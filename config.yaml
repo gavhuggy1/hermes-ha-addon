@@ -1,0 +1,37 @@
+name: "Hermes Agent"
+version: "1.0.0"
+slug: "hermes_agent"
+description: "AI agent for Home Assistant with voice, automations, and task execution"
+url: "https://github.com/gavhuggy1/hermes-ha-addon"
+arch:
+  - aarch64
+  - amd64
+  - armv7
+init: false
+hassio_api: true
+hassio_role: "manager"
+homeassistant_api: true
+auth_api: true
+docker_api: true
+host_network: true
+host_dbus: true
+privileged:
+  - SYS_ADMIN
+  - SYS_RAWIO
+map:
+  - config:rw
+  - share:rw
+  - media:rw
+  - ssl:rw
+options:
+  hermes_home: "/data/hermes"
+schema:
+  hermes_home: str
+image: "ghcr.io/gavhuggy1/hermes-ha-addon"
+backup_exclude:
+  - "*/cache/*"
+  - "*/image_cache/*"
+  - "*/audio_cache/*"
+  - "*/sandboxes/*"
+  - "*.db-wal"
+  - "*.db-shm"
